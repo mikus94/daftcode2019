@@ -1,0 +1,64 @@
+/todolist/<id_zadania>
+
+Metoda PATCH
+
+GOOD
+(
+    2,
+    {
+        "done": True
+    },
+    204
+),
+(
+    2,
+    {
+        "title": "Learn even more Python",
+        "done": False
+    },
+    204
+),
+(
+    2,
+    {
+        "done": True,
+        "done_date": "2011-11-11 11:11:11"
+    },
+    204
+),
+(
+    2,
+    {
+        "done": False,
+        "done_date": None
+    },
+    204
+)
+
+BAD
+(ID, UPDATE, CODE)
+
+(
+    999,
+    {},
+    404
+),
+
+(
+    1000,
+    { 
+        "title": "CosCos",
+        "done": True,
+        "done_date": "2099-12-12 12:12:12"
+    },
+    404
+),
+
+(
+    2,
+    {
+        "done": False,
+        "done_date": "2011-11-11 11:11:11"
+    },
+    400
+)

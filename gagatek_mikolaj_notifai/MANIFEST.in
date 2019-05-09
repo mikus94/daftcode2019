@@ -1,0 +1,2 @@
+include zadanie1/schema.sql
+global-exclude *.pyc
