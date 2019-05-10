@@ -46,6 +46,8 @@ def get_tasks_list():
     """
     # get all the tasks
     result = db_get_all_tasks()
+    for r in result:
+        print(r['created_date'])
     # return their jsons
     return jsonify(result)
 

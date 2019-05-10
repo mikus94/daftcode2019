@@ -1,4 +1,4 @@
-from code.solutions.zadanie2 import Car, DieselCar, EnvironmentalError
+from zadanie2 import Car, DieselCar, EnvironmentalError
 import unittest
 
 print('zadanie2 test')
