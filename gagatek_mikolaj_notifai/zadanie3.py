@@ -61,18 +61,26 @@ class TestExtractElem(unittest.TestCase):
         """
         Test both empty lists.
         """
-        l = []
-        result = extract_elements(l, l)
+        result = extract_elements([], [])
         self.assertEqual(result, [])
 
     def test_start_end(self):
         """
         Test getting first and last element.
         """
-        l1 = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+        l1 = [i for i in range(10)]
         l2 = [0, 9]
         result = extract_elements(l1, l2)
         self.assertEqual(result, [0, 9])
+
+    def test_multiple_index(self):
+        """
+        Test getting the same element multiple times.
+        """
+        l1 = [1,2,3]
+        l2 = [1 * 10]
+        result = extract_elements(l1, l2)
+        self.assertEqual(result, [2 * len(l2)])
 
 
 if __name__ == '__main__':

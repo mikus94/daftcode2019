@@ -65,9 +65,7 @@ def get_db():
             d[col[0]] = row[idx]
         return d
 
-    # db = getattr(g, '_database', None)
     if '_database' not in g:
-        # db = g._database = sqlite3.connect(DATABASE)
         g.db = sqlite3.connect(
             current_app.config['DATABASE'],
             detect_types=sqlite3.PARSE_DECLTYPES
@@ -129,12 +127,10 @@ def db_insert_task(task):
     place_holders = ', '.join('?' * len(task))
     sql = ("INSERT INTO {} ({}) VALUES ({})"
            .format(TABLE_NAME, cols, place_holders))
-    # insert into table
     db = get_db()
     # get used cursor to obtain the row id
     cursor_used = db.execute(sql, tuple(task.values()))
     task_id = cursor_used.lastrowid
-    # commit the transaction
     db.commit()
     return task_id
 

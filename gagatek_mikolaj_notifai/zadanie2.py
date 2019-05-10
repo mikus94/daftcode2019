@@ -97,13 +97,11 @@ class Car:
         # get possible args
         liters = kwargs.get('liters', None)
         limit = kwargs.get('limit', None)
-        # check if args were correct
-        # check if only 1 argument passed
         if len(kwargs) > 1:
             raise TypeError(
                    'You can only declare liters or limit argument!'
             )
-        # check if it fuels liters
+
         if liters is not None:
             # check if it is int
             _check_type(liters, 'liters', int)
@@ -112,11 +110,11 @@ class Car:
             if fueled > self.tank_capacity:
                 raise ValueError(
                     'You cannot fill tank with {} liters! '
-                    'It gets surcharged!'.format(liters)
+                    'It gets filled too much!'.format(liters)
                 )
             self.tanked_fuel = fueled
             return liters
-        # check if it fuels till limit
+
         if limit is not None:
             # check limit type and if it is range <0;1>
             _check_type(limit, 'limit', float)
@@ -186,11 +184,11 @@ class Car:
             str: Representation of object.
         """
         prc_fuel = (self.tanked_fuel / self.tank_capacity) * 100
-        mrepr = (
+        new_repr = (
             "<Car at {} of brand {}, with tank full in {:3.1f}%>"
             .format(hex(id(self)), self.brand, prc_fuel)
         )
-        return mrepr
+        return new_repr
 
 
 class DieselCar(Car):
