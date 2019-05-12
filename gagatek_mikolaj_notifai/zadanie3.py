@@ -7,6 +7,7 @@ email: mikolaj.gagatek@gmail.com
 """
 import unittest
 
+
 def extract_elements(list1, list2):
     """
     Function returns list of elements by extraction them from list1 by using
@@ -52,7 +53,7 @@ class TestExtractElem(unittest.TestCase):
         """
         Test empty list2.
         """
-        l1 = [1,2,3]
+        l1 = [1, 2, 3]
         l2 = []
         result = extract_elements(l1, l2)
         self.assertEqual(result, [])
@@ -77,7 +78,7 @@ class TestExtractElem(unittest.TestCase):
         """
         Test getting the same element multiple times.
         """
-        l1 = [1,2,3]
+        l1 = [1, 2, 3]
         l2 = [1 for _ in range(10)]
         result = extract_elements(l1, l2)
         self.assertEqual(result, [2 for _ in range(10)])
