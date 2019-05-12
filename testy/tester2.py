@@ -69,13 +69,13 @@ class TestTask2(unittest.TestCase):
             (0.1, 0)
         ],
         [
-            (0.5, 15),
+            (0.5, 15.5),
             (0.25, 0),
             (0.1, 0)
         ],
         [
-            (0.5, 14),
-            (0.25, 1),
+            (0.5, 14.5),
+            (0.25, 1.25),
             (0.1, 0)
         ],
         [
@@ -85,9 +85,34 @@ class TestTask2(unittest.TestCase):
         ],
         [
             (0.5, 617),
-            (0.25, 308),
-            (0.1, 123)
+            (0.25, 308.5),
+            (0.1, 123.4)
         ]
+    ]
+
+    ex_numbers = [
+        ('bmw', 12., 0.5),
+        ('bmw', 99999., 99999.),
+        ('bmw', 0.001, 0.),
+        ('bmw', 12., 11.99),
+        ('bmw', 11.3, 0.9)
+    ]
+
+    ex_numbers_limit = [
+        (1, 11.5),
+        (1, 0),
+        (0.5, 0.0005),
+        # (1, 0.01),
+        (0, 0),
+        (0.5, 4.75)
+    ]
+
+    ex_numbers_liters = [
+        (0.7, 0.7),
+        (0., 0),
+        (0.00001, 0.00001),
+        (0.01, 0.01),
+        (10.4, 10.4)
     ]
 
 
@@ -219,6 +244,17 @@ class TestTask2(unittest.TestCase):
             with self.assertRaises(EnvironmentalError):
                 dc.fill_tank(liters=10)
 
+    def test_numbers_limit(self):
+        for car, (f, a) in zip(self.ex_numbers, self.ex_numbers_limit):
+            c = Car(*car)
+            res = c.fill_tank(limit=f)
+            self.assertEqual(res, a)
+
+
+    def test_numers_liters(self):
+        for car, (f, a) in zip(self.ex_numbers, self.ex_numbers_liters):
+            c = Car(*car)
+            self.assertEqual(c.fill_tank(liters=f), a)
 
 
 if __name__ == '__main__':

@@ -8,6 +8,7 @@ email: mikolaj.gagatek@gmail.com
 import logging
 import random
 import string
+from numbers import Number
 
 
 class EnvironmentalError(Exception):
@@ -59,8 +60,8 @@ class Car:
         """
         # assign instance variables
         self.brand = _check_type(brand, 'brand', str)
-        self.tank_capacity = _check_type(tank_capacity, 'tank_capacity', int)
-        self.tanked_fuel = _check_type(tanked_fuel, 'tanked_fuel', int)
+        self.tank_capacity = _check_type(tank_capacity, 'tank_capacity', Number)
+        self.tanked_fuel = _check_type(tanked_fuel, 'tanked_fuel', Number)
         # check if tank capacity is not exceeded
         if tanked_fuel > tank_capacity:
             raise ValueError('Tanked fuel exceeds tank capacity!')
@@ -104,7 +105,7 @@ class Car:
 
         if liters is not None:
             # check if it is int
-            _check_type(liters, 'liters', int)
+            _check_type(liters, 'liters', Number)
             # check if we can fill it with that much liters of fuel
             fueled = self.tanked_fuel + liters
             if fueled > self.tank_capacity:
@@ -117,13 +118,13 @@ class Car:
 
         if limit is not None:
             # check limit type and if it is range <0;1>
-            _check_type(limit, 'limit', float)
+            _check_type(limit, 'limit', Number)
             if limit < 0 or limit > 1:
                 raise ValueError(
                     'Limit value should be in range <0;1>, is {}!'
                     .format(limit)
                 )
-            desired_fuel = int(limit * self.tank_capacity)
+            desired_fuel = limit * self.tank_capacity
             # if desired fuel capacity is lower than current capacity
             # then fill with 0 fuel
             if desired_fuel <= self.tanked_fuel:

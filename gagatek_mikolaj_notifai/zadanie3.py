@@ -78,9 +78,9 @@ class TestExtractElem(unittest.TestCase):
         Test getting the same element multiple times.
         """
         l1 = [1,2,3]
-        l2 = [1 * 10]
+        l2 = [1 for _ in range(10)]
         result = extract_elements(l1, l2)
-        self.assertEqual(result, [2 * len(l2)])
+        self.assertEqual(result, [2 for _ in range(10)])
 
 
 if __name__ == '__main__':
